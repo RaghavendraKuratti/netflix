@@ -1,20 +1,13 @@
-import { Component } from '@angular/core';
-import { ActionSheetController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-challenge',
+  templateUrl: './challenge.page.html',
+  styleUrls: ['./challenge.page.scss'],
 })
-export class HomePage {
+export class ChallengePage implements OnInit {
 
-  slideOpts2 = {
-    slidesPerView: 2.8
-  };
-  slideOpts3 = {
-    slidesPerView: 2.4,
-    spaceBetween: 20,
-  };
+
   public slideOpts = {
     slidesPerView: 1.2,
     spaceBetween: 50,
@@ -94,6 +87,9 @@ export class HomePage {
     }
   };
 
-  constructor() {}
+  constructor() { }
+
+  ngOnInit() {
+  }
 
 }

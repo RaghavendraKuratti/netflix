@@ -18,6 +18,18 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./Auth/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'signup',
+    loadChildren: () => import('./Auth/signup/signup.module').then( m => m.SignupPageModule)
+  },
+  {
+    path: 'main',
+    loadChildren: () => import('./main/main.module').then( m => m.MainPageModule)
+  },
+  {
+    path: 'challenge',
+    loadChildren: () => import('./challenge/challenge.module').then( m => m.ChallengePageModule)
   }
 ];
 

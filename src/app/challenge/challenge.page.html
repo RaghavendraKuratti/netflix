@@ -1,0 +1,51 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/main']" >
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="div_img">
+    <!-- <img src="assets/img/viking.jpg"> -->
+    <video autoplay src="https://assets.mixkit.co/videos/preview/mixkit-mother-with-her-little-daughter-eating-a-marshmallow-in-nature-39764-large.mp4"></video>
+    <ion-item class="ion-no-border">
+      <ion-avatar>
+        <img src="assets/img/blank_user.png">
+      </ion-avatar>
+
+      <ion-label>
+        <h2 class="text__ellipsis" > Raghavendra Kuratti <br>
+          20-01-2021 </h2>
+      </ion-label>
+    </ion-item>
+    <div class="options">
+      <ion-toolbar>
+        <ion-buttons>
+          <ion-button>
+            <ion-icon slot="icon-only" name="thumbs-up"></ion-icon>
+          </ion-button>
+          <p>5.6 lakh</p>
+        </ion-buttons>
+        <ion-buttons>
+          <ion-button>
+            <ion-icon slot="icon-only" name="thumbs-down"></ion-icon>
+          </ion-button>
+          <p>2000</p>
+        </ion-buttons>
+        <ion-buttons>
+          <ion-button>
+            <ion-icon slot="icon-only" name="flag"></ion-icon>
+          </ion-button>
+          <p>100</p>
+        </ion-buttons>
+      </ion-toolbar>
+    </div>
+  </div>
+</ion-content>

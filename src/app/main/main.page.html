@@ -1,0 +1,70 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      <img style="height: 40px;" src="assets/img/challenge.png" alt="logo">
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/login']">
+        <ion-icon slot="icon-only" name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button  [routerLink]="['/home']">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-slides  class="slides" [options]="slideOpts">
+  <ion-slide>
+    <div class="div_img">
+      <img src="assets/img/blank_user.png">
+      <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+    </div>
+    <p class="text__ellipsis">Your story</p>
+  </ion-slide>
+  <ion-slide  *ngFor="let post of posts">
+    <div class="div_img">
+      <img [src]="post.proimg">
+    </div>
+    <p class="text__ellipsis">{{post.name}}</p>
+  </ion-slide>
+</ion-slides>
+
+
+<ion-card  *ngFor="let post of posts">
+  <ion-item class="ion-no-border">
+    <ion-avatar>
+      <img [src]="post.proimg">
+    </ion-avatar>
+
+    <ion-label>
+      <h2> {{post.name}} </h2>
+      <p>{{post.createdAt | date : "dd MMMM YYYY"}}</p>
+    </ion-label>
+  </ion-item>
+  <div class="video_container"   [routerLink]="['/challenge']">
+    <video class="video" [src]="post.media.url"></video>
+  </div>
+  <ion-item>
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-icon slot="icon-only" name="heart"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon slot="icon-only" name="link"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon slot="icon-only" name="share"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button >
+        <ion-icon slot="icon-only" name="bookmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-item>
+</ion-card>
+</ion-content>

@@ -1,5 +1,95 @@
-<div class="main-container">
-  <ion-button color="secondary" fill="outline" (click)="_ActionSheet()" expand="full" shape="round">
-    click to open sheet
-  </ion-button>
-</div>
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      <img style="height: 40px;" src="assets/img/challenge.png" alt="logo">
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/login']">
+        <ion-icon slot="icon-only" name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-slides class="slides" [options]="slideOpts">
+  <ion-slide *ngFor="let i of [1,2,3,4]">
+    <div>
+      <img src="assets/img/suits.jpg" alt="">
+      <p class="title">SUITS SEASONE 1</p>
+    </div>
+  </ion-slide>
+</ion-slides>
+<ion-slides [options]="slideOpts2">
+  <ion-slide>
+    <div class="category">
+      <p>DISCOVERY</p>
+    </div>
+  </ion-slide>
+  <ion-slide>
+    <div class="category">
+      <p>POPULAR</p>
+    </div>
+  </ion-slide>
+  <ion-slide>
+    <div class="category">
+      <p>CATEGORIES</p>
+    </div>
+  </ion-slide>
+</ion-slides>
+<ion-item lines="none">
+  My list
+  <ion-buttons slot="end">
+    <ion-button>
+      <ion-icon slot="icon-only" name="chevron-forward" size="small"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-item>
+<ion-slides class="listslides" [options]="slideOpts3">
+  <ion-slide>
+    <div>
+      <img src="assets/img/viking.jpg">
+    </div>
+  </ion-slide>
+  <ion-slide>
+    <div>
+      <img src="assets/img/suits.jpg">
+    </div>
+  </ion-slide>
+  <ion-slide>
+    <div>
+      <img src="assets/img/viking.jpg">
+    </div>
+  </ion-slide>
+</ion-slides>
+<ion-item lines="none">
+  Popular on Netflix
+  <ion-buttons slot="end">
+    <ion-button>
+      <ion-icon slot="icon-only" name="chevron-forward" size="small"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-item>
+<ion-slides class="listslides" [options]="slideOpts3">
+  <ion-slide>
+    <div>
+      <img src="assets/img/viking.jpg">
+    </div>
+  </ion-slide>
+  <ion-slide>
+    <div>
+      <img src="assets/img/suits.jpg">
+    </div>
+  </ion-slide>
+  <ion-slide>
+    <div>
+      <img src="assets/img/viking.jpg">
+    </div>
+  </ion-slide>
+</ion-slides>
+</ion-content>
