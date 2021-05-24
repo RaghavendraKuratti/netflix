@@ -7,10 +7,18 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
+    path: 'alert-page',
+    loadChildren: () => import('./alert-page/alert-page.module').then( m => m.AlertPagePageModule)
+  },
+  {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./Auth/login/login.module').then( m => m.LoginPageModule)
+  }
 ];
 
 @NgModule({
