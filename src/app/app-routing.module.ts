@@ -7,12 +7,12 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'alert-page',
+    path: 'covid19',
     loadChildren: () => import('./alert-page/alert-page.module').then( m => m.AlertPagePageModule)
   },
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'covid19',
     pathMatch: 'full'
   },
   {

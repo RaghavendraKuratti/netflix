@@ -92,6 +92,9 @@ export class LoginPage implements OnInit {
       }
     }
   };
+
+  email = '';
+  password = '';
   constructor() { }
 
   ngOnInit() {

@@ -15,6 +15,7 @@ import { InputModule } from '../Components/input/input.mogule';
     FormsModule,
     IonicModule,
     InputModule,
+    FormsModule,
     LoginPageRoutingModule
   ],
   declarations: [LoginPage]
