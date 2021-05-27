@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
@@ -73,7 +74,9 @@ export class CovidService {
   countryPath = 'https://api.covid19api.com/countries';
   casesPath = 'https://api.covid19api.com/total/dayone/country/';
   indiaData = 'https://api.apify.com/v2/key-value-stores/toDWvRj1JpTXiM8FF/records/LATEST?disableRedirect=true';
-  constructor(private http: HttpClient) {}
+  public loading: any;
+  constructor(private http: HttpClient,
+    public loadingController: LoadingController) {}
   getCountries(): Observable<Country[]> {
     return this.http.get<Country[]>(this.countryPath).pipe(
       tap(users => console.log('country retrieved!')),
@@ -101,5 +104,17 @@ export class CovidService {
       return of(result as T);
     };
   }
-
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  async loadingPresent() {
+    this.loading = await this.loadingController.create({
+      message: 'LOoading...',
+    });
+    this.loading.present();
+  }
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  loadingDismiss() {
+    if (this.loading) {
+      this.loading.dismiss();
+    }
+  }
 }

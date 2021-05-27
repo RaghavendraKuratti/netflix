@@ -1,0 +1,210 @@
+
+
+    <ion-slides class="indiaslides" [options]="slideOpts2">
+      <ion-slide>
+        <ion-card class="deaths">
+          <ion-card-header>
+            <ion-card-title>Deaths</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-item>
+              <ion-label>Total</ion-label>
+              <ion-note slot="end" color="warning">
+                <ng-container  *ngIf="indiaData; else elseBlock">
+                  {{indiaData.deaths}}
+                </ng-container>
+              </ion-note>
+            </ion-item>
+            <ion-item>
+              <ion-label>New</ion-label>
+              <ion-note slot="end" color="danger">
+                <ng-container  *ngIf="indiaData; else elseBlock">
+                  {{indiaData.deathsNew}}
+                </ng-container>
+              </ion-note>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="confirmed">
+          <ion-card-header>
+            <ion-card-title>Active</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item>
+              <ion-label>Total</ion-label>
+              <ion-note slot="end" color="warning">
+                <ng-container  *ngIf="indiaData; else elseBlock">
+                  {{indiaData.activeCases}}
+                </ng-container>
+              </ion-note>
+            </ion-item>
+            <ion-item>
+              <ion-label>New</ion-label>
+              <ion-note slot="end" color="danger">
+                <ng-container  *ngIf="indiaData; else elseBlock">
+                  {{indiaData.activeCasesNew}}
+                </ng-container>
+              </ion-note>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="recovered">
+          <ion-card-header>
+            <ion-card-title>Recovered</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-item>
+              <ion-label>Total</ion-label>
+              <ion-note slot="end" color="warning">
+                <ng-container  *ngIf="indiaData; else elseBlock">
+                  {{indiaData.recovered}}
+                </ng-container>
+              </ion-note>
+            </ion-item>
+            <ion-item>
+              <ion-label>New</ion-label>
+              <ion-note slot="end" color="danger">
+                <ng-container  *ngIf="indiaData; else elseBlock">
+                  {{indiaData.recoveredNew}}
+                </ng-container>
+              </ion-note>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card style="background-color: #3880ff6e;">
+          <ion-card-header>
+            <ion-card-title>Tests</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-item>
+              <ion-label>Previous Day Tests</ion-label>
+              <ion-note slot="end" color="warning">
+                <ng-container  *ngIf="indiaData; else elseBlock">
+                  {{indiaData.previousDayTests}}
+                </ng-container>
+              </ion-note>
+            </ion-item>
+            <ion-item>
+              <ion-label>For more Info</ion-label>
+              <ion-note slot="end" color="danger">
+                <ion-item *ngIf="indiaData" [href]="indiaData.readMe">
+                  <ion-label>Link</ion-label>
+                </ion-item>
+              </ion-note>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+
+
+    <ion-item *ngIf="indiaData" class="select">
+      <ion-select placeholder="Select State" (ionChange)="getStateCases()" [(ngModel)]="selectedStateIndex">
+        <ion-select-option [value]="i" *ngFor="let state of indiaData.regionData; let i = index">
+           {{state.region}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-card >
+      <ion-card-header>
+        <ion-card-title>Active</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label>Currently</ion-label>
+          <ion-note slot="end" color="warning">
+            <ng-container  *ngIf="selectedState; else elseBlock">
+              {{selectedState.activeCases}}
+            </ng-container>
+          </ion-note>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+    <ion-card >
+      <ion-card-header>
+        <ion-card-title>Infected</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label>Total</ion-label>
+          <ion-note slot="end" color="warning">
+            <ng-container  *ngIf="selectedState; else elseBlock">
+              {{selectedState.totalInfected}}
+            </ng-container>
+          </ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>New</ion-label>
+          <ion-note slot="end" color="danger">
+            <ng-container  *ngIf="selectedState; else elseBlock">
+              <ng-container *ngIf="selectedState.newInfected > 0; else elseInfect">
+                {{selectedState.newInfected}}
+                <ion-icon style="color: red;" name="arrow-up-sharp"></ion-icon>
+              </ng-container>
+              <ng-template #elseInfect>
+                {{selectedState.newInfected * -1}}
+                <ion-icon style="color: green;" name="arrow-down-sharp"></ion-icon>
+              </ng-template>
+            </ng-container>
+          </ion-note>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+    <ion-card >
+      <ion-card-header>
+        <ion-card-title>Deaths</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+
+        <ion-item>
+          <ion-label>Total</ion-label>
+          <ion-note slot="end" color="warning">
+            <ng-container  *ngIf="selectedState; else elseBlock">
+              {{selectedState.deceased}}
+            </ng-container>
+          </ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>New</ion-label>
+          <ion-note slot="end" color="danger">
+            <ng-container  *ngIf="selectedState; else elseBlock">
+              {{selectedState.newDeceased}}
+            </ng-container>
+          </ion-note>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Recovered</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label>Total</ion-label>
+          <ion-note slot="end" color="warning">
+            <ng-container  *ngIf="selectedState; else elseBlock">
+              {{selectedState.recovered}}
+            </ng-container>
+          </ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>New</ion-label>
+          <ion-note slot="end" color="success">
+            <ng-container  *ngIf="selectedState; else elseBlock">
+              {{selectedState.newRecovered}}
+            </ng-container>
+          </ion-note>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+    <ng-template #elseBlock>0</ng-template>

@@ -1,0 +1,40 @@
+<div class="container">
+  <ion-slides  #slides2 class="infoslide"
+  (ionSlidesDidLoad)="slidesDidLoad(slides2)" (ionSlideTouchEnd)="slidesDidLoad(slides2)"
+  [options]="slideOpts" autoplay="5000" speed="300">
+    <ion-slide *ngFor="let inf of helpData">
+      <a [href]="inf.link" target="_blank">
+        <img [src]="inf.img">
+      </a>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-slides class="slides"
+  [options]="slideOpts3">
+    <ion-slide>
+      <div>
+        <img src="assets/img/SafetyMeasures.jpeg">
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div>
+        <img src="assets/img/SafetyMeasures2.jpg">
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div>
+        <img src="assets/img/SafetyMeasures3.png">
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div>
+        <img src="assets/img/SafetyMeasures4.png">
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div>
+        <img src="assets/img/SafetyMeasures5.png">
+      </div>
+    </ion-slide>
+  </ion-slides>
+</div>

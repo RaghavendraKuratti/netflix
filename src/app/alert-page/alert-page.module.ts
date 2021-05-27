@@ -9,6 +9,9 @@ import { AlertPagePageRoutingModule } from './alert-page-routing.module';
 import { AlertPagePage } from './alert-page.page';
 import { ModalpopupComponent } from './modalpopup/modalpopup.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SafetyMeasuresComponent } from './components/safety-measures/safety-measures.component';
+import { IndianStateWiseComponent } from './components/indian-state-wise/indian-state-wise.component';
+import { CountryWiseComponent } from './components/country-wise/country-wise.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -17,7 +20,11 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     AlertPagePageRoutingModule
   ],
-  declarations: [AlertPagePage, ModalpopupComponent],
+  declarations: [AlertPagePage,
+    ModalpopupComponent,
+    SafetyMeasuresComponent,
+    CountryWiseComponent,
+    IndianStateWiseComponent],
   providers: [DatePipe]
 })
 export class AlertPagePageModule {}

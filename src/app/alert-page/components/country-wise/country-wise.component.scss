@@ -1,0 +1,21 @@
+.slides, ion-grid {
+  text-align: center;
+  ion-card {
+    height: 100px;
+    width: 150px;
+  }
+  ion-card-header {
+    padding: 10px;
+    ion-card-title {
+      font-size: 25px;
+    }
+  }
+  ion-card-content {
+    font-size: 30px;
+    padding: 0px 10px;
+    font-weight: 900;
+  }
+}
+ion-select {
+  width: 100%;
+}

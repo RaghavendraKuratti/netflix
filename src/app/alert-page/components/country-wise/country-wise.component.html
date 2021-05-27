@@ -1,0 +1,83 @@
+<ion-item>
+  <ion-select placeholder="Select Country" (ionChange)="getCountryCases()" [(ngModel)]="selectedCountry">
+    <ion-select-option [value]="country.Slug" *ngFor="let country of countries">
+       {{country.Country}}
+    </ion-select-option>
+  </ion-select>
+</ion-item>
+<ion-slides class="slides" [options]="slideOpts">
+  <ion-slide>
+    <ion-card class="deaths">
+      <ion-card-header>
+        <ion-card-title>Deaths</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ng-container  *ngIf="totalCases; else elseBlock">
+          {{totalCases.Deaths}}
+        </ng-container>
+      </ion-card-content>
+    </ion-card>
+  </ion-slide>
+  <ion-slide>
+    <ion-card style="background-color: #2dd36f6e;">
+      <ion-card-header>
+        <ion-card-title>Active</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ng-container  *ngIf="totalCases; else elseBlock">
+          {{totalCases.Active}}
+        </ng-container>
+      </ion-card-content>
+    </ion-card>
+  </ion-slide>
+  <ion-slide>
+    <ion-card class="recovered">
+      <ion-card-header>
+        <ion-card-title>Recovered</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ng-container  *ngIf="totalCases; else elseBlock">
+          {{totalCases.Recovered}}
+        </ng-container>
+      </ion-card-content>
+    </ion-card>
+  </ion-slide>
+  <ion-slide>
+    <ion-card class="confirmed">
+      <ion-card-header>
+        <ion-card-title>Confirmed</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ng-container  *ngIf="totalCases; else elseBlock">
+          {{totalCases.Confirmed}}
+        </ng-container>
+      </ion-card-content>
+    </ion-card>
+  </ion-slide>
+</ion-slides>
+<ion-item>
+  <ion-segment (ionChange)="getOptionCases($event)" [value]="selectedOption" color="tertiary" >
+    <ion-segment-button value="Deaths">
+      <ion-label>Deaths</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="Active">
+      <ion-label>Active</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="Recovered">
+      <ion-label>Recovered</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="Confirmed">
+      <ion-label>Confirmed</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-item>
+<ion-card>
+  <ion-card-content  class="ion-no-padding" style="width:100%" >
+    <canvas #lineCanvas  style="position: relative;" width="200" height="200"></canvas>
+  </ion-card-content>
+</ion-card>
+
+<ng-template #elseBlock>0</ng-template>

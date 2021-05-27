@@ -1,0 +1,127 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-safety-measures',
+  templateUrl: './safety-measures.component.html',
+  styleUrls: ['./safety-measures.component.scss'],
+})
+export class SafetyMeasuresComponent implements OnInit {
+
+
+  helpData = [
+    {
+      img: 'https://www.mygov.in/sites/all/themes/mygov/images/covid/guideline-april-2021.jpg',
+      link: 'https://static.mygov.in/rest/s3fs-public/mygov_161725058451307401.pdf'
+    },
+    {
+      img: 'https://www.mygov.in/sites/all/themes/mygov/images/covid/available_hospital_bed.jpg',
+      link: 'https://static.mygov.in/rest/s3fs-public/mygov_162151943451307401.pdf'
+    },
+    {
+      img: 'https://www.mygov.in/sites/all/themes/mygov/images/covid/Covid-19-Vaccination-Prioritised-Groups_Eng.jpg',
+      link: 'https://static.mygov.in/rest/s3fs-public/mygov_161104930451307401.pdf'
+    },
+    {
+      img: 'https://www.mygov.in/sites/all/themes/mygov/images/covid/follow-covid-19-appropriate-behaviour-Eng.png',
+      link: 'https://static.mygov.in/rest/s3fs-public/mygov_161761111451307401.pdf'
+    },
+    {
+      img: 'https://www.mygov.in/sites/all/themes/mygov/images/covid/Preparedness_Eng.jpg',
+      link: 'https://static.mygov.in/rest/s3fs-public/mygov_161112119551307401.pdf'
+    },
+    {
+      img: 'https://www.mygov.in/sites/all/themes/mygov/images/covid/covid-story.png',
+      link: 'https://www.mygov.in/campaigns/positive-stories/?target=webview&type=campaign&nid=0'
+    }
+  ];
+  slideOpts = {
+    slidesPerView: 1.4,
+    spaceBetween: 20,
+    loop: true
+  };
+  slideOpts3 = {
+    slidesPerView: 1.2,
+    spaceBetween: 30,
+    centeredSlides: true,
+    initialSlide: 1,
+    loop: true,
+    coverflowEffect: {
+      rotate: 0,
+      stretch: 0,
+      depth: 100,
+      modifier: 1,
+      slideShadows: false,
+    },
+    on: {
+      beforeInit() {
+        const swiper = this;
+
+        swiper.classNames.push(`${swiper.params.containerModifierClass}coverflow`);
+        swiper.classNames.push(`${swiper.params.containerModifierClass}3d`);
+
+        swiper.params.watchSlidesProgress = true;
+        swiper.originalParams.watchSlidesProgress = true;
+      },
+      setTranslate() {
+        const swiper = this;
+        const {
+          width: swiperWidth, height: swiperHeight, slides, $wrapperEl, slidesSizesGrid, $
+        } = swiper;
+        const params = swiper.params.coverflowEffect;
+        const isHorizontal = swiper.isHorizontal();
+        const transform$$1 = swiper.translate;
+        const center = isHorizontal ? -transform$$1 + (swiperWidth / 2) : -transform$$1 + (swiperHeight / 2);
+        const rotate = isHorizontal ? params.rotate : -params.rotate;
+        const translate = params.depth;
+        // Each slide offset from center
+        for (let i = 0, length = slides.length; i < length; i += 1) {
+          const $slideEl = slides.eq(i);
+          const slideSize = slidesSizesGrid[i];
+          const slideOffset = $slideEl[0].swiperSlideOffset;
+          const offsetMultiplier = ((center - slideOffset - (slideSize / 2)) / slideSize) * params.modifier;
+
+          let rotateY = isHorizontal ? rotate * offsetMultiplier : 0;
+          let rotateX = isHorizontal ? 0 : rotate * offsetMultiplier;
+          // var rotateZ = 0
+          let translateZ = -translate * Math.abs(offsetMultiplier);
+
+          let translateY = isHorizontal ? 0 : params.stretch * (offsetMultiplier);
+          let translateX = isHorizontal ? params.stretch * (offsetMultiplier) : 0;
+
+          // Fix for ultra small values
+          if (Math.abs(translateX) < 0.001) {translateX = 0;}
+          if (Math.abs(translateY) < 0.001) {translateY = 0;}
+          if (Math.abs(translateZ) < 0.001) {translateZ = 0;}
+          if (Math.abs(rotateY) < 0.001) {rotateY = 0;}
+          if (Math.abs(rotateX) < 0.001) {rotateX = 0;}
+
+          // eslint-disable-next-line max-len
+          const slideTransform = `translate3d(${translateX}px,${translateY}px,${translateZ}px)  rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+          $slideEl.transform(slideTransform);
+          $slideEl[0].style.zIndex = -Math.abs(Math.round(offsetMultiplier)) + 1;
+
+        }
+
+        // Set correct perspective for IE10
+        if (swiper.support.pointerEvents || swiper.support.prefixedPointerEvents) {
+          const ws = $wrapperEl[0].style;
+          ws.perspectiveOrigin = `${center}px 50%`;
+        }
+      },
+      setTransition(duration) {
+        const swiper = this;
+        swiper.slides
+          .transition(duration)
+          .find('.swiper-slide-shadow-top, .swiper-slide-shadow-right, .swiper-slide-shadow-bottom, .swiper-slide-shadow-left')
+          .transition(duration);
+      }
+    }
+  };
+  constructor() { }
+
+  ngOnInit() {}
+  slidesDidLoad(slides) {
+    slides.startAutoplay();
+  }
+}

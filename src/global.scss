@@ -26,6 +26,15 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 
+.confirmed {
+  background: linear-gradient(to bottom, #a6c9fd 0%, #bde5fc 100%);
+ }
+ .recovered {
+   background: linear-gradient(to bottom, #9be89c 0%, #cdf97d 100%);
+ }
+ .deaths {
+   background: linear-gradient(to bottom, #fc8281 0%, #fd9b99 100%);
+ }
 
 .my-custom-class .action-sheet-group {
   background: #e5e5e5;
